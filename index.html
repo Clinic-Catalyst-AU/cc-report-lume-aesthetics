@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Lumè Aesthetics - Clinic Catalyst Growth Plan</title>
+<link rel="icon" type="image/png" href="assets/favicon.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="robots" content="noindex,nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Open+Sans:ital,wght@0,300;0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root {
+  --dark: #0A2A28;
+  --dark-alt: #0D3D38;
+  --teal: #00B4A0;
+  --teal-bright: #00D4BC;
+  --peach: #E8A87C;
+  --peach-light: #F5C7A0;
+  --white: #FFFFFF;
+  --text-faint: rgba(255,255,255,0.6);
+  --text-mid: rgba(255,255,255,0.85);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body { font-family:'Open Sans',sans-serif; background:#000; color:var(--white); overflow:hidden; }
+.deck { height:100vh; overflow-y:auto; scroll-snap-type:y mandatory; }
+.slide { height:100vh; scroll-snap-align:start; display:flex; align-items:center; justify-content:center; position:relative; overflow:hidden; }
+.slide-html { padding:3rem 4rem; background:linear-gradient(160deg, #0A2A28 0%, #0E3D3A 40%, #0A2A28 100%); }
+.slide-html.alt { background:linear-gradient(160deg, #0D3D38 0%, #0A2A28 50%, #0D3D38 100%); }
+.slide-html.teal-bg { background:linear-gradient(135deg, #073B36 0%, #0A2A28 100%); }
+.inner { max-width:1100px; width:100%; position:relative; z-index:2; }
+.dot-overlay { position:absolute; inset:0; opacity:0.05; background-image:radial-gradient(circle,var(--teal) 1px,transparent 1px); background-size:50px 50px; pointer-events:none; }
+.glow { position:absolute; width:500px; height:500px; border-radius:50%; background:radial-gradient(circle,rgba(0,180,160,0.12) 0%,transparent 70%); pointer-events:none; }
+.glow-tl { top:-200px; left:-200px; }
+.glow-br { bottom:-200px; right:-200px; }
+.label { font-family:'Montserrat',sans-serif; font-size:0.65rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--teal-bright); margin-bottom:0.75rem; }
+.label-peach { color:var(--peach); }
+h2 { font-family:'Montserrat',sans-serif; font-size:clamp(1.4rem,3vw,2.2rem); font-weight:800; text-transform:uppercase; line-height:1.1; margin-bottom:1rem; }
+h3 { font-family:'Montserrat',sans-serif; font-size:1rem; font-weight:700; text-transform:uppercase; margin-bottom:0.6rem; }
+.teal { color:var(--teal-bright); }
+.peach { color:var(--peach); }
+p { font-size:0.9rem; color:var(--text-mid); font-weight:300; line-height:1.8; }
+.split { display:grid; grid-template-columns:2fr 3fr; gap:3rem; align-items:center; }
+.split-even { display:grid; grid-template-columns:1fr 1fr; gap:2.5rem; align-items:center; }
+.grid-2 { display:grid; grid-template-columns:1fr 1fr; gap:1.5rem; }
+.mt-1 { margin-top:1rem; }
+.task-num { font-family:'Montserrat',sans-serif; font-size:0.6rem; font-weight:700; letter-spacing:0.2em; text-transform:uppercase; color:var(--peach); display:inline-block; border:1px solid rgba(232,168,124,0.3); padding:0.25rem 0.7rem; border-radius:4px; margin-bottom:0.8rem; }
+.quote { border-left:3px solid var(--peach); padding:0.8rem 1.2rem; margin-bottom:1.5rem; background:rgba(232,168,124,0.04); border-radius:0 6px 6px 0; }
+.quote p { font-style:italic; color:var(--peach-light); font-size:1rem; line-height:1.5; }
+.browser-frame { border-radius:8px; overflow:hidden; border:1px solid rgba(255,255,255,0.1); background:#111; }
+.browser-bar { height:28px; background:#1a1a1a; display:flex; align-items:center; padding:0 10px; gap:6px; }
+.browser-dot { width:8px; height:8px; border-radius:50%; background:#333; }
+.browser-dot.r { background:#ff5f56; }
+.browser-dot.y { background:#ffbd2e; }
+.browser-dot.g { background:#27c93f; }
+.browser-frame img { width:100%; display:block; }
+.scroll-arrow { position:absolute; bottom:2.5rem; left:50%; transform:translateX(-50%); text-align:center; z-index:10; animation:bounce 2s infinite; cursor:pointer; }
+.scroll-arrow span { display:block; font-family:'Montserrat',sans-serif; font-size:0.6rem; font-weight:600; color:rgba(255,255,255,0.4); letter-spacing:0.15em; text-transform:uppercase; margin-bottom:0.4rem; }
+.scroll-arrow .arrow { font-size:1.8rem; color:var(--teal-bright); }
+@keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(8px)} }
+.demo-link { display:inline-flex; align-items:center; gap:0.4rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-size:0.72rem; font-weight:700; text-decoration:none; letter-spacing:0.08em; text-transform:uppercase; margin-top:1rem; transition:color 0.2s; }
+.demo-link:hover { color:#00ffec; }
+.card { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.07); border-radius:8px; padding:1.3rem; }
+.card h4 { font-family:'Montserrat',sans-serif; font-size:0.75rem; font-weight:700; text-transform:uppercase; letter-spacing:0.08em; color:var(--teal-bright); margin-bottom:0.4rem; }
+.card p { font-size:0.8rem; color:var(--text-faint); line-height:1.6; }
+.price-card { background:rgba(0,180,160,0.06); border:2px solid var(--teal); border-radius:12px; padding:1.5rem 1.7rem; text-align:center; }
+.price-tag { font-family:'Montserrat',sans-serif; font-size:clamp(2rem,4vw,3rem); font-weight:900; color:var(--teal-bright); }
+.price-period { font-size:0.75rem; color:var(--text-faint); text-transform:uppercase; letter-spacing:0.1em; }
+.includes-list { list-style:none; text-align:left; margin-top:1rem; }
+.includes-list li { padding:0.3rem 0; font-size:0.76rem; color:var(--text-mid); border-bottom:1px solid rgba(255,255,255,0.04); display:flex; align-items:center; gap:0.4rem; }
+.includes-list li::before { content:"\2713"; color:var(--teal-bright); font-weight:700; }
+.discount-badge { display:inline-block; background:var(--peach); color:var(--dark); font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:800; padding:0.35rem 0.9rem; border-radius:4px; text-transform:uppercase; letter-spacing:0.06em; margin-top:1rem; }
+.faq-item { padding:0.7rem 0; border-bottom:1px solid rgba(255,255,255,0.05); }
+.faq-q { font-family:'Montserrat',sans-serif; font-size:0.75rem; font-weight:700; color:var(--peach); margin-bottom:0.3rem; }
+.faq-a { font-size:0.78rem; color:var(--text-faint); }
+.bul { list-style:none; padding:0; margin:0; }
+.bul li { display:flex; gap:0.5rem; font-size:0.82rem; color:var(--text-mid); line-height:1.6; margin-bottom:0.4rem; }
+.bul li span.d { color:var(--teal-bright); flex-shrink:0; }
+.kv { display:flex; align-items:baseline; gap:0.6rem; margin-bottom:0.5rem; }
+.kv b { color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; font-size:0.72rem; min-width:105px; flex-shrink:0; }
+.kv span { font-size:0.78rem; color:var(--text-mid); line-height:1.4; }
+.tbl { width:100%; max-width:1100px; border-collapse:collapse; background:rgba(255,255,255,.03); border:1px solid rgba(255,255,255,.08); border-radius:8px; overflow:hidden; }
+.tbl th { text-align:left; padding:0.5rem 0.7rem; font-family:'Montserrat',sans-serif; font-size:0.62rem; letter-spacing:.14em; text-transform:uppercase; color:var(--text-faint); border-bottom:1px solid rgba(255,255,255,.12); }
+.tbl td { padding:0.55rem 0.7rem; vertical-align:top; color:var(--text-mid); font-size:0.76rem; line-height:1.45; border-bottom:1px solid rgba(255,255,255,.08); }
+.tbl td:first-child { width:24%; }
+.tbl td strong { color:var(--teal-bright); }
+.slide-counter { position:fixed; bottom:1.2rem; right:1.5rem; font-family:'Montserrat',sans-serif; font-size:0.65rem; font-weight:600; color:rgba(255,255,255,0.25); letter-spacing:0.08em; z-index:100; }
+.nav-hint { position:fixed; bottom:1.2rem; left:1.5rem; font-family:'Montserrat',sans-serif; font-size:0.55rem; color:rgba(255,255,255,0.15); letter-spacing:0.08em; z-index:100; }
+@media print {
+  .deck { overflow:visible; scroll-snap-type:none; }
+  .slide { min-height:100vh; page-break-after:always; page-break-inside:avoid; }
+  .slide-counter, .nav-hint { display:none; }
+}
+@media (max-width:768px) {
+  .slide { min-height:100vh; padding:2rem 1.2rem; }
+  .slide-html { padding:2rem 1.2rem; }
+  .inner { width:100%; }
+  .split, .split-even, .grid-2 { grid-template-columns:1fr; gap:1.2rem; }
+  [style*="grid-template-columns"] { grid-template-columns:1fr !important; gap:1rem !important; }
+  h2 { font-size:1.2rem; margin-bottom:0.7rem; }
+  h3 { font-size:0.85rem; }
+  p { font-size:0.8rem; line-height:1.6; }
+  .quote { padding:0.5rem 0.8rem; margin-bottom:0.8rem; }
+  .quote p { font-size:0.85rem; }
+  .card { padding:0.8rem; }
+  .card h4 { font-size:0.65rem; }
+  .card p { font-size:0.7rem; line-height:1.5; }
+  .browser-frame img { max-height:250px; object-fit:cover; }
+  .price-card { padding:1.2rem; }
+  .price-tag { font-size:1.8rem; }
+  .includes-list li { font-size:0.7rem; padding:0.25rem 0; }
+  .scroll-arrow, .slide-counter { display:none; }
+  .tbl td, .tbl th { font-size:0.66rem; padding:0.4rem; }
+}
+</style>
+</head>
+<body>
+<div id="inapp-banner" style="display:none; position:fixed; top:0; left:0; right:0; z-index:9999; background:var(--teal-bright); color:var(--dark); padding:10px 16px; text-align:center; font-family:'Montserrat',sans-serif; font-size:0.7rem; font-weight:700;">
+  For the best experience, <a href="" id="inapp-link" style="color:var(--dark); text-decoration:underline;">open in Safari</a> or Chrome
+</div>
+<div class="deck" id="deck">
+
+<!-- 1 COVER -->
+<section class="slide slide-html" style="background:radial-gradient(ellipse at center, #0E3D3A 0%, #0A2A28 60%, #071E1C 100%);">
+  <div class="dot-overlay"></div>
+  <div class="inner" style="text-align:center;">
+    <img src="assets/cc-wordmark.png" alt="Clinic Catalyst" style="height:40px; margin-bottom:3rem; opacity:0.9;">
+    <h2 style="font-size:clamp(2rem,4vw,3.2rem); letter-spacing:2px; margin-bottom:0.5rem;">Off your phone<br>at 6am and 9pm.<br><span class="teal">Booked to 80%, every week.</span></h2>
+    <p style="max-width:520px; margin:1.5rem auto 2.5rem; font-size:1rem; color:var(--text-mid);">Prepared for Whitney, Lum&egrave; Aesthetics by Whitney</p>
+    <p style="font-size:0.85rem; color:var(--text-faint); margin-bottom:0.3rem;">9 September 2026</p>
+    <p style="font-size:0.7rem; color:rgba(255,255,255,0.35); letter-spacing:2px; text-transform:uppercase;">By <strong style="color:var(--teal-bright); font-weight:600;">Kelly Wotherspoon</strong> & <strong style="color:var(--teal-bright); font-weight:600;">Alicia Hagen</strong></p>
+  </div>
+  <div class="scroll-arrow" onclick="document.getElementById('deck').scrollBy({top:window.innerHeight,behavior:'smooth'})">
+    <span>Click to begin</span>
+    <div class="arrow">&#8595;</div>
+  </div>
+</section>
+
+<!-- 2 SOCIAL PROOF -->
+<section class="slide" style="padding:0; background:#000;"><img src="assets/social-proof.png" alt="Clinics we've worked with" style="width:100%; height:100%; object-fit:contain;"></section>
+
+<!-- 3 WHAT YOU'VE BUILT -->
+<section class="slide slide-html">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="split" style="grid-template-columns:1fr 2fr; gap:2.5rem;">
+      <div style="text-align:center;">
+        <p class="label label-peach">Your clinic right now</p>
+        <h2 style="font-size:clamp(1.2rem,2.5vw,1.8rem);">What You've <span class="teal">Built Already</span></h2>
+        <img src="assets/whitney-portrait.jpg" alt="Nurse Whitney" style="width:100%; max-width:280px; border-radius:10px; margin-top:1.5rem; object-fit:cover; object-position:center 20%; aspect-ratio:3/4;">
+      </div>
+      <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem;">
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">Your own doors in Earls Arcade since December 2025, after a rented room and twelve months of being told what you could not advertise. "Now I've been able to advertise a little bit more and it's growing really well." Some days booked out already.</p></div>
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">Nurse-led cosmetic medicine as the engine, and skin only just switched on, with clients already coming back for skin after their cosmetic appointments. Threads, Pro Cell, Superlux for IPL and tattoo removal, and a room ready for number two.</p></div>
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">SQT Bio-Microneedling that clients love, that only one other place in Bundaberg offers, and that fills a day every time you take $50 off it. That is a front-end offer. It just has not been treated like one yet.</p></div>
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">Collections already designed and priced on your socials: Essential $300, Radiance $150, Signature $380, Renewal $900, Skin Investment $1,200. Half the work of a price list and a skin journey is done. Nobody can find it yet.</p></div>
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">A free fifteen-minute consultation as the front door, a look and a brand that are genuinely yours ("I'm a plain girl", black, white and a bit of gold), and Angel in the room on Fridays, running the socials and building her book.</p></div>
+        <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:1rem;"><span style="color:var(--teal-bright); font-size:1.1rem; font-weight:700; flex-shrink:0;">&#10003;</span><p style="font-size:0.8rem; color:var(--text-mid); line-height:1.5; margin:0;">A niche you named on the call: preventing the long-term effects of ageing, at a level a dermal clinic cannot go to. That is the positioning. Everything below builds on it.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 4 GOALS -->
+<section class="slide slide-html alt">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">Tailored for Lum&egrave; Aesthetics</p>
+    <h2>Your Goals & <span class="teal">Objectives</span></h2>
+    <div style="max-width:820px; margin-top:0.8rem;">
+      <div class="card" style="padding:1rem; margin-bottom:0.6rem;"><h4>1. A consistent 80%, not booked-out then scattered</h4><p>Some days full, some days empty. The goal is a book that fills itself from the front: a front-end offer, a follow-up that runs, and a Friday that fills for Angel.</p></div>
+      <div class="card" style="padding:1rem; margin-bottom:0.6rem;"><h4>2. Off your phone from 6am to 9pm</h4><p>The DMs, the "do you have prices", the reschedules, the gym conversations. Answered, booked and followed up by the system, in your voice, so you are only in the conversation when a nurse needs to be.</p></div>
+      <div class="card" style="padding:1rem; margin-bottom:0.6rem;"><h4>3. A website with prices, this month</h4><p>Top of your list. "Do you have a website? Do you have prices?" gets a link, and the link books the consultation.</p></div>
+      <div class="card" style="padding:1rem; margin-bottom:0.6rem;"><h4>4. The four things you said you want</h4><p>Fortnightly skin journey packages, a membership or loyalty club, VIP nights, and before and afters you actually take. All four are on the pages that follow, with the system that makes them happen without you remembering.</p></div>
+      <div class="card" style="padding:1rem;"><h4>5. The second room, the dermal therapist, then the wellness clinic</h4><p>Room two is ready. A full-time dermal therapist needs a full book of skin to walk into. The IV and wellness clinic comes after. Everything we install now is built for a clinic with more rooms and more hands than this one.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 POSITIONING -->
+<section class="slide slide-html alt">
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <p class="label">Quick wins you can implement now</p>
+    <span class="task-num">Task One</span>
+    <h2>Branding & <span class="teal">Positioning</span></h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin-top:0.9rem; max-width:1100px;">
+      <div class="card" style="padding:0.95rem 1.05rem;"><h4 style="margin-bottom:0.3rem;">1. Keep the look. Own the story.</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">Black, white and gold, the script accent, "confidence looks good on you". Nothing about your look changes. What is missing is the sentence underneath it: a cosmetic nurse in Bundaberg with a special interest in getting ahead of ageing, who plans skin and cosmetic medicine together so it stays natural. That sentence goes on the website, the bio, every ad and the front window.</p></div>
+      <div class="card" style="padding:0.95rem 1.05rem;"><h4 style="margin-bottom:0.3rem;">2. Concern first, machine second</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">Nobody in Bundaberg searches for Pro Cell or Superlux. She notices texture, the first lines, a sun spot, hair she is sick of, a tattoo she regrets. The ad talks about that, the page explains what a consultation looks at, and the treatment gets chosen in the room by a nurse. Your collections already do this well. We take it all the way through.</p></div>
+      <div class="card" style="padding:0.95rem 1.05rem;"><h4 style="margin-bottom:0.3rem;">3. Two nurses, two reasons to book</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">Angel is a second door, not a Friday special. Her own page, her own booking link, her own series on the socials she already runs. Fridays fill because people book Angel, and when the second room opens, the pattern is already there for the dermal therapist.</p></div>
+      <div class="card" style="padding:0.95rem 1.05rem;"><h4 style="margin-bottom:0.3rem;">4. Advertising rules, handled once</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">After twelve months of being restricted, the rules matter to you. Cosmetic medicine is advertised as a consultation, never by product name, never with a price in the ad. Skin can be advertised openly, with prices. "Has a special interest in", never "expert". Every post Angel writes and every ad we run goes through the compliance filter before it goes out, so it cannot creep back in.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 CLAUDE TODAY -->
+<section class="slide slide-html alt">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">Do this week, before anything is built</p>
+    <h2>Four things to do with <span class="teal">Claude</span> today</h2>
+    <p style="max-width:800px; margin:0.5rem 0 1rem; font-size:0.84rem; color:var(--text-mid);">You said you are hopeless at the tech. These four are typing into a chat box. An hour each to set up, nothing to install, and Kelly walks you through them on the call.</p>
+    <div style="max-width:940px;">
+      <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:0.9rem 1rem; margin-bottom:0.5rem;"><span style="color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; flex-shrink:0; min-width:1.4rem;">01</span><div><h4 style="margin-bottom:0.2rem;">The skin journey, from a voice note</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">After the consultation, record ninety seconds of what you saw and what you recommend. Drop it into Claude with your collections as the menu. It writes the three-to-six-month journey in plain English: what, in what order, how often, the three products, the price. You read it, fix it, send it to her phone. The thing you said is "not happening at the moment" happens this week.</p></div></div>
+      <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:0.9rem 1rem; margin-bottom:0.5rem;"><span style="color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; flex-shrink:0; min-width:1.4rem;">02</span><div><h4 style="margin-bottom:0.2rem;">One Lum&egrave; project, shared with Angel</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">A Claude project holding your voice, your treatments and prices, the collections, the two of you, and the advertising rules. Angel writes captions and specials inside it. You are in the same project, so you always know what is on sale this week, which you said you sometimes do not.</p></div></div>
+      <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:0.9rem 1rem; margin-bottom:0.5rem;"><span style="color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; flex-shrink:0; min-width:1.4rem;">03</span><div><h4 style="margin-bottom:0.2rem;">The DM replies, written once</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">Paste the ten questions you answer every day (prices, what SQT is, do I need a consult, can I book Friday) and ask for warm replies in your voice, each one ending with the booking link. Save them as quick replies on Instagram. Half of 6am to 9pm gone by Thursday.</p></div></div>
+      <div class="card" style="display:flex; gap:0.8rem; align-items:flex-start; padding:0.9rem 1rem;"><span style="color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:800; font-size:1.05rem; flex-shrink:0; min-width:1.4rem;">04</span><div><h4 style="margin-bottom:0.2rem;">The three-product script</h4><p style="font-size:0.76rem; color:var(--text-mid); line-height:1.5; margin:0;">Whichever range you land on, ask Claude for the "do this, this, this every day" card for each skin type, and the text that goes out when she is due to reorder. Simple, prescribed, no reading required, which is what your neuro-spicy client and your Neurode problem both need.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 WEBSITE -->
+<section class="slide slide-html">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num">Task Two</span>
+        <h2>Website & <span class="teal">Local SEO</span></h2>
+        <div class="quote"><p>"People are like, oh, do you have a website? Do you have prices? I don't even have a plan for that yet."</p></div>
+        <ul class="bul">
+          <li><span class="d">&#8226;</span> There is no site, so we built the concept from your Facebook page: your logo, your collections and their prices, Whitney and Angel, the sign in the arcade. Prices on the page, so nobody has to message to ask.</li>
+          <li><span class="d">&#8226;</span> Start with your concern on every page, the SQT intro offer as the front door, and one line everywhere: not sure, start with a free consultation. Cosmetic medicine is described, never priced, in line with the rules.</li>
+          <li><span class="d">&#8226;</span> The booking link on every button. Timely stays. Duvet holds the consent forms. Nobody rebuilds anything to make the site work.</li>
+          <li><span class="d">&#8226;</span> Own Google in Bundaberg: Google Business Profile, reviews asked for automatically, a page each for the concerns and the treatments people search ("cosmetic nurse Bundaberg", "skin needling Bundaberg", "tattoo removal Bundaberg", "IPL Bundaberg").</li>
+          <li><span class="d">&#8226;</span> The concept is built. Kelly's mockup is linked below. When you go live, it is yours, in your name.</li>
+        </ul>
+        <a href="https://clinic-catalyst-au.github.io/lume-aesthetics/website.html" target="_blank" class="demo-link">Open the website concept &#8594;</a>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/website-concept-screenshot.png" alt="Lum&egrave; Aesthetics website concept">
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-faint); margin-top:0.5rem; font-style:italic;">Hero footage is stock until we film in your room. Prices are from your September collections posts, to be confirmed.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 OFFER: SQT INTRO -->
+<section class="slide slide-html alt">
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num">Task Three</span>
+        <h2>The SQT intro offer <span class="teal">is your front door</span></h2>
+        <div class="quote"><p>"The SQT does usually go really well if we offer the $50 off, because there's only one other one in town."</p></div>
+        <p style="font-size:0.78rem; color:var(--text-mid); margin-bottom:0.5rem;">You already have the offer. We make it the door everyone walks through:</p>
+        <div style="background:rgba(0,180,160,0.06); border:1px solid rgba(0,180,160,0.25); border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:0.5rem;">
+          <p style="font-size:0.68rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem;">The intro: SQT, $250</p>
+          <p style="font-size:0.78rem; color:var(--text-mid); line-height:1.45; margin:0;">Full-face SQT at $250 instead of $300 for new clients, with the free consultation and a written skin journey in the same visit. Always on, limited spots a week, in every ad, the bio and the assessment.</p>
+        </div>
+        <div style="background:rgba(0,180,160,0.06); border:1px solid rgba(0,180,160,0.25); border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:0.5rem;">
+          <p style="font-size:0.68rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem;">The journey: your collections</p>
+          <p style="font-size:0.78rem; color:var(--text-mid); line-height:1.45; margin:0;">The Renewal Collection is already a fortnightly journey: three SQT, three LED, $900. The skin journey written at the consultation points at it, and the follow-up sells it. The collections become the ladder, priced and self-bookable.</p>
+        </div>
+        <div style="background:rgba(232,168,124,0.08); border:1px solid rgba(232,168,124,0.3); border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:0.8rem;">
+          <p style="font-size:0.68rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem;">The Club, and the room</p>
+          <p style="font-size:0.78rem; color:var(--text-mid); line-height:1.45; margin:0;">Lum&egrave; Club: the membership you asked for, fortnightly treatments planned, three products reordered, first invitation to Lum&egrave; nights. Cosmetic medicine stays behind the consultation, where the nurse and the rules want it, and it is where the skin client goes next.</p>
+        </div>
+        <a href="https://clinic-catalyst-au.github.io/lume-aesthetics/assessment.html" target="_blank" class="demo-link">Try the Skin Assessment Demo &#8594;</a>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/assessment-screenshot.png" alt="Skin assessment demo">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 OFFER CRAFTING -->
+<section class="slide slide-html alt">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">How Alicia and Kelly craft an offer</p>
+    <h2>Her concern in, <span class="teal">the SQT intro out.</span> Then the room does the rest.</h2>
+    <p style="max-width:880px; margin:0.4rem 0 0.9rem; font-size:0.82rem; color:var(--text-mid); line-height:1.5;">The ad speaks to the concern in her words and points at one thing, without promising an outcome. She books. In the room, the consultation and the skin journey do the selling, and you have the script for what comes next: the collection, the Club, the friend she brings, and, when it fits, the cosmetic medicine consultation. The intro gets her through the door. The journey is where the value is.</p>
+    <table class="tbl">
+      <tr><th>The concern, in her words</th><th>The front-end offer</th><th>In the room: the script</th></tr>
+      <tr><td><strong>"My skin looks dull and the pores are getting worse"</strong></td><td>SQT intro, $250 with the consultation and the skin journey. She feels the treatment on visit one.</td><td>The Renewal Collection, three SQT and three LED a fortnight apart, the three products, the next appointment booked before she leaves. Club offered on session two.</td></tr>
+      <tr><td><strong>"I've started noticing lines and I don't want to look done"</strong></td><td>Free consultation, positioned as getting ahead of ageing with a nurse who keeps it natural. SQT intro offered as the first step.</td><td>A journey across skin and cosmetic medicine in the right order, quoted in the room, kept natural. This is your niche and your biggest money maker, met at the front door by skin.</td></tr>
+      <tr><td><strong>"I've got a tattoo I regret" / "I'm sick of shaving"</strong></td><td>Superlux tattoo removal and IPL hair removal, priced clearly on the site, self-bookable as a course. No consultation friction for something she already understands.</td><td>A course with the sessions mapped, reminders that book the next one, and the skin conversation when she is in the chair anyway.</td></tr>
+      <tr><td><strong>Every quarter, for everyone</strong></td><td>A Lum&egrave; night with a revenue target. Clients and Club members invited, bring a friend to her first consultation, product giveaways, an SQT demo, an offer only available in the room.</td><td>The run sheet Kelly promised on the call: the invite from the database, the friend incentive, the demo schedule, the collections and memberships sold on the night, the next night benchmarked against the last.</td></tr>
+    </table>
+  </div>
+</section>
+
+<!-- 10 ADVERTISING -->
+<section class="slide slide-html">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num">Task Four</span>
+        <h2>Advertising, <span class="teal">Bundaberg-sized</span></h2>
+        <div class="quote"><p>One offer, three campaigns, a small budget spent well. The money that would have gone to an agency goes into the ads.</p></div>
+        <div>
+          <div class="kv"><b>Campaign 1</b><span>The SQT intro. A reel of the treatment in your room, what it is, what it does over the next few days, then "$250 first visit, consultation included". Geo-targeted to Bundaberg and surrounds.</span></div>
+          <div class="kv"><b>Campaign 2</b><span>Getting ahead of ageing. Women 30 to 50 in Bundaberg who have noticed the first changes and do not want to look done. Free consultation with a nurse. No product names, no prices, in line with the rules.</span></div>
+          <div class="kv"><b>Campaign 3</b><span>Retargeting, small budget. Anyone who visited, watched, engaged or messaged and did not book keeps seeing you: Angel, the collections, what a consultation involves, then another CTA.</span></div>
+          <div class="kv"><b>Google</b><span>Tight, for intent. "Cosmetic nurse Bundaberg", "skin needling Bundaberg", "tattoo removal Bundaberg", "IPL Bundaberg". Each lands on its exact page.</span></div>
+          <div class="kv"><b>The measure</b><span>Spend, consultations booked, intros taken, journeys started, Club joined. Cost per consultation and per client, by source, every Monday.</span></div>
+          <div class="kv"><b>Compliance</b><span>Skin advertised openly with prices. Cosmetic medicine as a consultation only. Every ad, post and reply through the compliance layer.</span></div>
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-faint); margin-top:0.5rem; font-style:italic;">Ad set on Alicia's layouts with your own photos. The video ad uses stock until we film with you.</p>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/ad-mockups-combined.png" alt="Concern-led ad mockups for Lum&egrave; Aesthetics">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 CRM -->
+<section class="slide slide-html alt">
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num">Task Five</span>
+        <h2>CRM & <span class="teal">Nurture Systems</span></h2>
+        <div class="quote"><p>"From six o'clock in the morning I'm responding to people to nine o'clock at night."</p></div>
+        <ul class="bul">
+          <li><span class="d">&#8226;</span> Today every enquiry lands on your phone, and the ones you answer at the gym are the lucky ones. Timely stays for booking, Duvet for consent forms, and your own CRM goes around them so a lead is captured the moment she asks, tagged by concern, and followed up until she books.</li>
+          <li><span class="d">&#8226;</span> The journey becomes: ad, post or a friend's word, the assessment or the concern page, name and mobile captured, an SMS and email in your voice inside a minute, education, the Timely link, and the automation stops the moment she books.</li>
+          <li><span class="d">&#8226;</span> A pipeline you can see: new lead, contacted, consultation booked, attended, skin journey presented, intro taken, journey started, Club, not ready yet. Nothing depends on you remembering.</li>
+          <li><span class="d">&#8226;</span> The gym conversation gets a link. "Text me your name and I'll send you the details" becomes the assessment link on your phone, and the system takes it from there.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/crm-nurture-mockup.png" alt="CRM and nurture automation">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 12 FOLLOW-UP THAT RUNS ITSELF -->
+<section class="slide slide-html">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <span class="task-num">Task Five, continued</span>
+    <h2>Follow-up that <span class="teal">runs itself</span></h2>
+    <p style="max-width:880px; margin:0.4rem 0 0.9rem; font-size:0.84rem; color:var(--text-mid); line-height:1.5;">Five pieces of the same system. None of them need a person to remember anything, and all of them speak in your voice from the business brain.</p>
+    <ul class="bul" style="max-width:1080px;">
+      <li><span class="d">&#8226;</span> The skin journey ladder. Today she leaves and everyone hopes. From now on: Day 1, a short personal text, "Lovely to meet you yesterday, your skin journey is attached, reply here with any questions." Day 3, a little education about the pathway. Day 7, a nudge from you. Day 14 and on, a slower nurture for the ones who are not ready. Then the fortnightly reminder that books the next session.</li>
+      <li><span class="d">&#8226;</span> The three-product reorder. Whichever range you choose, the system knows when she is due, texts her, and the order goes out. Prescriptive, online, yours. The ecosystem you described on the call.</li>
+      <li><span class="d">&#8226;</span> The newsletter engine. Each month the system writes four editions in your voice from the business brain, one to educate, one from Angel, one with a client journey, one with the Club offer, loads them and sends them. Angel approves, nobody rebuilds anything.</li>
+      <li><span class="d">&#8226;</span> The re-engagement campaign. Everyone who has had cosmetic medicine and never had skin. Everyone who has not booked in three months. Segmented by what she last had, a short personal text and email for each group, and every reply tracked to a booking. The money already in your database.</li>
+      <li><span class="d">&#8226;</span> Reviews and referrals at the right moment. The Google request after her first SQT, the bring-a-friend link after her first Club month, the birthday note. Timed by the system, not remembered by you.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- 13 SPEED TO LEAD -->
+<section class="slide slide-html alt">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num">Task Six</span>
+        <h2>Speed-to-Lead & <span class="teal">After Hours</span></h2>
+        <div class="quote"><p>"People approach me at the gym. I need help. How do I do this?"</p></div>
+        <ul class="bul">
+          <li><span class="d">&#8226;</span> An assistant trained on your clinic, your treatments and prices, the collections, the rules and your voice. It answers the DMs, the Facebook messages and the website chat, day and night, and books the consultation or the SQT intro straight into Timely.</li>
+          <li><span class="d">&#8226;</span> Anything clinical, anything about cosmetic medicine, anything it is not sure of comes to you with the whole conversation attached. You answer as a nurse, once, instead of as a receptionist, fifty times.</li>
+          <li><span class="d">&#8226;</span> The business brain. One document holds who Lum&egrave; is: the two nurses, the treatments and prices, the collections, the Club, the products, your voice, the advertising rules. The assistant, Angel's captions, the emails, the ladder and the reports all read from it. Change a price once and everything picks it up. When the dermal therapist starts, she reads it on day one.</li>
+          <li><span class="d">&#8226;</span> Your phone goes quiet at 6am and 9pm. That is the point of all of it.</li>
+        </ul>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/speed-to-lead-mockup.png" alt="After-hours automation mockup">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 14 SKIN ASSESSMENT -->
+<section class="slide slide-html teal-bg">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num" style="border-color:var(--peach); color:var(--peach);">Bonus</span>
+        <h2>Interactive <span class="peach">Skin Assessment</span></h2>
+        <div class="quote"><p>The answer to "do you have prices?" that books a consultation instead of starting a conversation.</p></div>
+        <ul class="bul">
+          <li><span class="d">&#8226;</span> Six questions in her words: the concern, how long, what she has tried, what she wants back, whether she wants the SQT intro, when. Then a note on what Whitney would look at first.</li>
+          <li><span class="d">&#8226;</span> Captures name, mobile and email last, once she is invested. Every completion is a warm lead with the concern already mapped.</li>
+          <li><span class="d">&#8226;</span> Lives on the website, the Instagram bio, the Facebook page, and as the link you send from the gym. Works at 9pm without you.</li>
+          <li><span class="d">&#8226;</span> Funnels into the free consultation and the SQT intro, tagged by concern so the follow-up matches. A Friday preference sends her to Angel.</li>
+        </ul>
+        <a href="https://clinic-catalyst-au.github.io/lume-aesthetics/assessment.html" target="_blank" class="demo-link">Try the Demo &#8594;</a>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/skin-assessment-mockup.png" alt="Skin assessment quiz">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 15 B&A STRATEGY -->
+<section class="slide slide-html teal-bg">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="split">
+      <div>
+        <span class="task-num" style="border-color:var(--peach); color:var(--peach);">Bonus</span>
+        <h2>The B&amp;A <span class="peach">Strategy</span></h2>
+        <div class="quote"><p>"I need to start taking before and after photos because I'm really bad at that."</p></div>
+        <p style="font-size:0.78rem; color:var(--text-mid); margin-bottom:0.7rem;">Two galleries, two rules, and a photo protocol so you never have to be good at photos:</p>
+        <div style="background:rgba(0,180,160,0.06); border:1px solid rgba(0,180,160,0.25); border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:0.5rem;">
+          <p style="font-size:0.68rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem;">Public gallery: skin</p>
+          <p style="font-size:0.78rem; color:var(--text-mid); line-height:1.45; margin:0;">SQT, IPL, hydrodermabrasion, live on the site with consent captured in the CRM at the consultation. A phone stand in the same spot, the same light, the same three angles, a checklist on the wall. Two minutes a visit.</p>
+        </div>
+        <div style="background:rgba(232,168,124,0.08); border:1px solid rgba(232,168,124,0.3); border-radius:6px; padding:0.6rem 0.85rem; margin-bottom:0.7rem;">
+          <p style="font-size:0.68rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; margin-bottom:0.15rem;">Password-protected: cosmetic medicine</p>
+          <p style="font-size:0.78rem; color:var(--text-mid); line-height:1.45; margin:0;">Prescription-only results behind a code shared after a consultation, no product names anywhere, in line with the rules that restricted you for a year.</p>
+        </div>
+        <ul class="bul">
+          <li><span class="d">&#8226;</span> The same pairs become the retargeting ads, the Lum&egrave; night slides and the journey series Angel runs on Instagram.</li>
+        </ul>
+        <a href="https://clinic-catalyst-au.github.io/lume-aesthetics/injectables.html" target="_blank" class="demo-link">Open the gallery demo (code: lume2026) &#8594;</a>
+      </div>
+      <div>
+        <div class="browser-frame">
+          <div class="browser-bar"><span class="browser-dot r"></span><span class="browser-dot y"></span><span class="browser-dot g"></span></div>
+          <img src="assets/ba-gallery-mockup.png" alt="Before and after gallery">
+        </div>
+        <p style="font-size:0.68rem; color:var(--text-faint); margin-top:0.5rem; font-style:italic;">Generated placeholders in the demo, labelled as such, until your own photos come in with consent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 16 PRACTITIONER POSITIONING -->
+<section class="slide slide-html">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label">Your biggest competitive edge</p>
+    <h2>Practitioner <span class="teal">Positioning</span></h2>
+    <p style="max-width:760px; margin-bottom:1.2rem;">Your edge is that a nurse does everything in the room, and plans skin and cosmetic medicine together. That story lives on every page, ad and booking, in words the rules allow: "has a special interest in", never "expert".</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; max-width:980px;">
+      <div class="card" style="text-align:center; padding:1.3rem;">
+        <img src="assets/whitney-portrait.jpg" alt="Nurse Whitney" style="width:130px; height:130px; border-radius:50%; object-fit:cover; object-position:center 15%; margin-bottom:0.8rem; border:2px solid var(--teal);">
+        <h4 style="color:var(--peach); font-size:0.8rem; margin-bottom:0.2rem;">Nurse Whitney</h4>
+        <p style="font-size:0.65rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.05em; margin-bottom:0.4rem;">COSMETIC NURSE &middot; FOUNDER</p>
+        <p style="font-size:0.75rem; color:var(--text-faint); line-height:1.5;">A special interest in getting ahead of ageing. Cosmetic medicine, threads, SQT, IPL and tattoo removal. The one whose phone goes quiet.</p>
+      </div>
+      <div class="card" style="text-align:center; padding:1.3rem;">
+        <div style="width:130px; height:130px; border-radius:50%; margin:0 auto 0.8rem; border:2px solid var(--teal); display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:2.2rem; font-weight:800; color:var(--teal-bright);">A</div>
+        <h4 style="color:var(--peach); font-size:0.8rem; margin-bottom:0.2rem;">Nurse Angel</h4>
+        <p style="font-size:0.65rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.05em; margin-bottom:0.4rem;">NURSE &middot; FRIDAYS &middot; SOCIALS</p>
+        <p style="font-size:0.75rem; color:var(--text-faint); line-height:1.5;">Her own page, her own booking link, her own series. Fridays fill because people book Angel, and she runs the content inside the Lum&egrave; project.</p>
+      </div>
+      <div class="card" style="text-align:center; padding:1.3rem;">
+        <div style="width:130px; height:130px; border-radius:50%; margin:0 auto 0.8rem; border:2px dashed var(--teal); display:flex; align-items:center; justify-content:center; font-family:'Montserrat',sans-serif; font-size:0.6rem; letter-spacing:0.1em; color:var(--teal-bright); text-transform:uppercase; text-align:center; padding:1rem;">Room two</div>
+        <h4 style="color:var(--peach); font-size:0.8rem; margin-bottom:0.2rem;">The dermal therapist</h4>
+        <p style="font-size:0.65rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.05em; margin-bottom:0.4rem;">FULL-TIME &middot; SKIN &middot; WHEN THE BOOK IS READY</p>
+        <p style="font-size:0.75rem; color:var(--text-faint); line-height:1.5;">Walks into a full skin book, a written journey for every client, and a page and booking link that already exist. The pattern is set before she is hired.</p>
+      </div>
+    </div>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin-top:1rem; max-width:1100px;">
+      <div class="card" style="padding:0.85rem 1rem;"><h4 style="margin-bottom:0.25rem;">Staff spotlights, for organic</h4><p style="font-size:0.74rem; color:var(--text-mid); line-height:1.45; margin:0;">Two nurses, two special interests, two series. What Whitney looks for when she plans ahead of ageing. What Angel is loving on Fridays. Filmed in ten minutes between clients, written inside the project, posted by Angel. A person for clients to book, which is how the pages fill.</p></div>
+      <div class="card" style="padding:0.85rem 1rem;"><h4 style="margin-bottom:0.25rem;">Follow your clients</h4><p style="font-size:0.74rem; color:var(--text-mid); line-height:1.45; margin:0;">With consent, a handful of clients followed through a Renewal journey: the consultation, each SQT, the photos, how they feel at the end. Each one is a case study for the site and a series that runs for months. Proof, told by the people who lived it.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 17 JOURNEYS, CLUB, NIGHTS -->
+<section class="slide slide-html alt">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">The four things you asked for</p>
+    <h2>Skin journeys, the Club, Lum&egrave; nights, <span class="teal">and the photos to prove it</span></h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.9rem; margin-top:0.8rem;">
+      <div class="card" style="padding:1rem 1.1rem;"><h4>Fortnightly skin journey packages</h4><p style="font-size:0.78rem; color:var(--text-mid);">Your collections are already the packages. The consultation writes the journey (three to six months, fortnightly, from a voice note), the follow-up books every session, the photos mark the progress, and the next collection is offered when this one ends. Nobody falls off the list.</p></div>
+      <div class="card" style="padding:1rem 1.1rem;"><h4>Lum&egrave; Club</h4><p style="font-size:0.78rem; color:var(--text-mid);">A monthly membership: treatments planned and booked ahead, three products reordered before she runs out, member pricing on cosmetic medicine quoted in the room, first invitation to Lum&egrave; nights, referral privileges. Predictable revenue every month, which is what the second room needs.</p></div>
+      <div class="card" style="padding:1rem 1.1rem;"><h4>Lum&egrave; nights</h4><p style="font-size:0.78rem; color:var(--text-mid);">Quarterly, with a revenue target. The run sheet Kelly promised on the call: the invite from the database, bring a friend to her first consultation, product giveaways, an SQT demo, collections and memberships sold on the night at a price only available in the room, the next night benchmarked against the last.</p></div>
+      <div class="card" style="padding:1rem 1.1rem;"><h4>Before and afters, without being good at photos</h4><p style="font-size:0.78rem; color:var(--text-mid);">A stand in the same spot, the same light, three angles, a checklist on the wall, consent captured with one tap at the consultation. The system reminds you at each session. The pairs go to the site, the ads and the Lum&egrave; night slides on their own.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 18 MONDAY SCREEN -->
+<section class="slide slide-html teal-bg">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <p class="label label-peach">The Monday screen</p>
+    <h2>One screen, every Monday. <span class="peach">Are we at 80% this week?</span></h2>
+    <p style="max-width:840px; margin-bottom:0.9rem; font-size:0.84rem;">Built from Timely, the ad accounts and the CRM, joined without a human, with the summary written for you: what happened last week, and the three things that need attention this week. Ten minutes on a Monday instead of a feeling about how busy it was.</p>
+    <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:0.7rem;">
+      <div class="card" style="padding:0.9rem;"><p style="font-size:0.62rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">Capacity</p><ul class="bul"><li style="font-size:0.76rem; margin-bottom:0.25rem;">Booked vs 80%</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">By day</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Whitney vs Angel</li><li style="font-size:0.76rem;">Open appointments</li></ul></div>
+      <div class="card" style="padding:0.9rem;"><p style="font-size:0.62rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">Front door</p><ul class="bul"><li style="font-size:0.76rem; margin-bottom:0.25rem;">Leads by source</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Consultations booked</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">SQT intros taken</li><li style="font-size:0.76rem;">Cost per consult</li></ul></div>
+      <div class="card" style="padding:0.9rem;"><p style="font-size:0.62rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">Journeys</p><ul class="bul"><li style="font-size:0.76rem; margin-bottom:0.25rem;">Journeys written</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Journeys started</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Collections sold</li><li style="font-size:0.76rem;">Skin after cosmetic</li></ul></div>
+      <div class="card" style="padding:0.9rem;"><p style="font-size:0.62rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">Club and retail</p><ul class="bul"><li style="font-size:0.76rem; margin-bottom:0.25rem;">Active members</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Monthly value</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Reorders</li><li style="font-size:0.76rem;">Retail per client</li></ul></div>
+      <div class="card" style="padding:0.9rem;"><p style="font-size:0.62rem; color:var(--peach); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.4rem;">Your time</p><ul class="bul"><li style="font-size:0.76rem; margin-bottom:0.25rem;">Messages handled by the system</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Handed to you</li><li style="font-size:0.76rem; margin-bottom:0.25rem;">Response time</li><li style="font-size:0.76rem;">Lapsed clients</li></ul></div>
+    </div>
+    <div class="card" style="margin-top:0.9rem; padding:0.9rem 1.1rem; background:rgba(0,180,160,0.06); border-color:rgba(0,180,160,0.25);">
+      <h4 style="margin-bottom:0.25rem; font-size:0.8rem;">The number that decides room two</h4>
+      <p style="font-size:0.74rem;">Booked hours against capacity, by nurse, four weeks running. When Whitney sits at 80% and Fridays are full for Angel, the dermal therapist is a hire with a book waiting, not a hope.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 19 TRANSITION -->
+<section class="slide slide-html teal-bg">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="glow glow-br"></div>
+  <div class="inner" style="text-align:center;">
+    <p class="label label-peach">Sound familiar?</p>
+    <h2 style="font-size:clamp(1.6rem,4vw,2.8rem); margin-bottom:1.5rem;">Growth Shouldn't Mean <span class="peach">Whitney On Her Phone Till 9pm</span></h2>
+    <p style="max-width:680px; margin:0 auto 2rem; font-size:1rem;">The DMs. The reschedules. "Do you have prices?" The gym. Not knowing what is on sale this week. No plan to hand a client, no photos to show one. In your words: "I need help. How do I do this?"</p>
+    <h2 style="font-size:clamp(1.2rem,3vw,2rem);">That's Where <span class="teal">We Step In</span></h2>
+    <p style="max-width:640px; margin:1rem auto 0; font-size:0.85rem;">Three days in Brisbane with us. We install the whole system into your business, show you and Angel how to run it, and you go home with it working. Then the money that would have gone to an agency goes into your ads instead.</p>
+    <div style="margin:2rem auto 0; display:inline-block; background:rgba(0,180,160,0.08); border:1px solid rgba(0,180,160,0.2); border-radius:8px; padding:1rem 2rem;">
+      <p style="font-size:0.7rem; color:var(--teal-bright); font-family:'Montserrat',sans-serif; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; margin-bottom:0.3rem;">Kelly's proven systems</p>
+      <p style="font-size:1.1rem; color:var(--white); font-weight:600;">15+ hours reclaimed per week, within 7 days of going live</p>
+    </div>
+  </div>
+</section>
+
+<!-- 20 HATS -->
+<section class="slide slide-html alt">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <div class="split-even">
+      <div>
+        <p class="label label-peach">What we do</p>
+        <h2>The Hats We<br><span class="teal">Take Off You</span></h2>
+        <p style="margin-bottom:1.2rem;">So growth never means more of your evenings.</p>
+        <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.5rem;">
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> The DMs and enquiries - answered and booked, day and night</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> "Do you have prices?" - a link that books</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> Reschedules and reminders - handled</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> The skin journey - written from a voice note</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> Journey follow-up and reorders - the ladder runs itself</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> Reviews and referrals - asked for at the right moment</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> Content - Angel's, inside the project, filter on</div>
+          <div style="display:flex; gap:0.5rem; font-size:0.78rem; color:var(--text-mid);"><span style="color:var(--teal-bright); flex-shrink:0;">&#10003;</span> The Monday summary - written before you open it</div>
+        </div>
+        <p class="mt-1" style="font-size:0.85rem; color:var(--peach-light); font-weight:600;">The only hat left is the one you trained for. The nurse in the room.</p>
+      </div>
+      <div>
+        <img src="assets/conference-stage.jpg" alt="Kelly and Alicia presenting" style="width:100%; border-radius:12px; object-fit:cover; object-position:center top; border:2px solid rgba(0,180,160,0.2); max-height:420px;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 21 CAMPAIGN PROCESS -->
+<section class="slide slide-html alt">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label">How it works</p>
+    <h2>Our Campaign <span class="teal">Process</span></h2>
+    <p style="max-width:720px; margin-bottom:2rem;">She sees the SQT reel, a getting-ahead-of-ageing post, or gets your link at the gym. She takes the assessment or lands on her concern page. From there everything is automated, and it stops the moment she books.</p>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr 1fr; gap:1.2rem;">
+      <div class="card" style="text-align:center; padding:1rem;"><img src="assets/campaign-ad.png" alt="Campaign" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;"><h4>Campaign</h4><p>A concern-led ad or the SQT intro reaches the woman in Bundaberg who has noticed her skin changing</p></div>
+      <div class="card" style="text-align:center; padding:1rem;"><img src="assets/campaign-crm.png" alt="Into CRM" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;"><h4>Into CRM</h4><p>She takes the assessment or lands on the concern page. Name, mobile, email and concern captured and tagged</p></div>
+      <div class="card" style="text-align:center; padding:1rem;"><img src="assets/campaign-followup.png" alt="Follow Up" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;"><h4>5-Day Follow Up</h4><p>Automated SMS and email in your voice if she does not book straight away, and a nudge from you on day seven</p></div>
+      <div class="card" style="text-align:center; padding:1rem;"><img src="assets/campaign-booked.png" alt="Booked" style="width:100%; aspect-ratio:1; object-fit:cover; border-radius:6px; margin-bottom:0.8rem;"><h4 style="color:var(--peach);">Booked</h4><p>Free consultation or the SQT intro booked in Timely, and the automation stops the moment she books</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 22 YOUR PART -->
+<section class="slide slide-html alt">
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">Team effort</p>
+    <h2>Your Part in <span class="teal">the Success</span></h2>
+    <p style="max-width:700px; margin-bottom:1.5rem;">We can't control every aspect of your business. The overall success comes down to a team effort. This is what we need from you and Angel.</p>
+    <div class="grid-2">
+      <div class="card" style="padding:1rem; display:flex; gap:1rem; align-items:center;"><img src="assets/yourpart-ba.png" alt="Before & Afters" style="width:120px; height:120px; object-fit:cover; border-radius:6px; flex-shrink:0;"><div><h4>Take the photos</h4><p>Same spot, same light, three angles, consent with one tap. The system reminds you. The results do the convincing, and you never have to be good at photos.</p></div></div>
+      <div class="card" style="padding:1rem; display:flex; gap:1rem; align-items:center;"><img src="assets/yourpart-experience.png" alt="Deliver" style="width:120px; height:120px; object-fit:cover; border-radius:6px; flex-shrink:0;"><div><h4>Write the journey, every time</h4><p>Ninety seconds into your phone after the consultation. The system turns it into the plan she holds and the follow-up that sells it.</p></div></div>
+      <div class="card" style="padding:1rem; display:flex; gap:1rem; align-items:center;"><img src="assets/yourpart-clinic.png" alt="Clinic" style="width:120px; height:120px; object-fit:cover; border-radius:6px; flex-shrink:0;"><div><h4>Ten minutes of filming a week</h4><p>Angel's phone, the room, one SQT, one answer to a question. Inside the project it becomes the month's content.</p></div></div>
+      <div class="card" style="padding:1rem; display:flex; gap:1rem; align-items:center;"><img src="assets/yourpart-rebook.png" alt="Rebook" style="width:120px; height:120px; object-fit:cover; border-radius:6px; flex-shrink:0;"><div><h4>Rebook in the room</h4><p>Every consultation ends with the journey on her phone, the Club offered and the next appointment booked before she leaves. Then the system holds it.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- 23 THE OFFER -->
+<section class="slide slide-html">
+  <div class="glow glow-br"></div>
+  <div class="inner">
+    <div class="split-even">
+      <div>
+        <p class="label">Your path forward</p>
+        <h2>Three days in Brisbane.<br><span class="teal">You go home with it running.</span></h2>
+        <p style="margin-bottom:0.8rem; font-size:0.8rem;">You said it on the call: "I would love that." The 3-Day Brisbane Workshop is where we install everything on these pages into your business, with you and Angel in the room, and show you how to run it. You are not paying $5,000 a month for an agency when you do not have a five-room clinic. That money goes into your ads.</p>
+        <div class="faq-item"><p class="faq-q">Day 1 - Foundations</p><p class="faq-a" style="font-size:0.74rem;">Your positioning, the business brain written with you, your own CRM in your name joined to Timely, the SQT intro offer and the collections structured as the journey ladder, the skin journey from a voice note, live.</p></div>
+        <div class="faq-item"><p class="faq-q">Day 2 - The follow-up and the front door</p><p class="faq-a" style="font-size:0.74rem;">The assistant on your inbox and DMs, the journey ladder, reorders, reviews and referrals, the skin assessment in your bio, the ads built on Alicia's layouts with your photos, the Lum&egrave; night run sheet.</p></div>
+        <div class="faq-item"><p class="faq-q">Day 3 - Launch and run it</p><p class="faq-a" style="font-size:0.74rem;">Campaigns live, the Monday screen live, the photo protocol set up, Angel trained on the content system inside the project. You leave with it running and us behind you.</p></div>
+        <div class="card" style="margin-top:0.8rem; padding:0.8rem 1rem; background:rgba(232,168,124,0.06); border-color:rgba(232,168,124,0.3);">
+          <h4 style="color:var(--peach); margin-bottom:0.2rem;">Bonus: the complete website, live within 24 hours of final design approval</h4>
+          <p style="font-size:0.74rem;">The concept you have seen, built out and launched in your name: $5,000 + GST, 50% upfront, 50% on going live, three rounds of revisions included. Top of your list, done.</p>
+        </div>
+      </div>
+      <div>
+        <div class="price-card">
+          <p class="price-period">3-Day Brisbane Workshop &middot; 26 to 28 October</p>
+          <div class="price-tag">$3,500</div>
+          <p style="font-size:0.7rem; color:var(--text-faint); margin-top:0.2rem;">+ GST &middot; $500 + GST deposit secures your seat &middot; bring Angel for $300</p>
+          <ul class="includes-list">
+            <li>Your own CRM, joined to Timely, the business brain</li>
+            <li>SQT intro offer, collections as the journey ladder</li>
+            <li>The skin journey from a voice note</li>
+            <li>The assistant on your inbox and DMs, day and night</li>
+            <li>Journey ladder, reorders, reviews, referrals, re-engagement</li>
+            <li>Skin assessment, the two galleries, the photo protocol</li>
+            <li>Meta and Google campaigns, built and launched</li>
+            <li>Lum&egrave; Club and the Lum&egrave; night run sheet</li>
+            <li>Angel trained on the content system</li>
+            <li>The Monday screen</li>
+          </ul>
+          <div class="discount-badge">You own everything. No agency, no lock-in.</div>
+          <a href="https://cliniccatalyst.com.au/checkout-page" target="_blank" style="display:block; margin-top:0.7rem; text-align:center; background:var(--teal-bright); color:#062B27; font-family:'Montserrat',sans-serif; font-weight:800; font-size:0.72rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.7rem 0.8rem; border-radius:6px; text-decoration:none;">Secure your seat with the $500 deposit &#8594;</a>
+          <p style="font-size:0.68rem; color:var(--text-faint); margin-top:0.6rem;">Ad spend in your own accounts. Ongoing support available, scoped with you.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 24 WHAT WE BUILD TOGETHER -->
+<section class="slide slide-html alt">
+  <div class="dot-overlay"></div>
+  <div class="glow glow-tl"></div>
+  <div class="inner">
+    <p class="label label-peach">Everything you walk out with</p>
+    <h2>What We <span class="teal">Build Together</span></h2>
+    <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:1.2rem; margin-top:1.5rem;">
+      <div class="card" style="padding:1.2rem;"><h4>The front door</h4><p>The SQT intro at $250 with the consultation and the skin journey, in every ad, the bio, the assessment and the gym link.</p></div>
+      <div class="card" style="padding:1.2rem;"><h4>Meta &amp; Google</h4><p>The SQT reel, the getting-ahead-of-ageing campaign, retargeting, and tight Google search for intent. Built in the room, launched before you leave.</p></div>
+      <div class="card" style="padding:1.2rem;"><h4>CRM &amp; automations</h4><p>Your own CRM joined to Timely. The assistant, the journey ladder, reorders, re-engagement, reviews, referrals. Your phone goes quiet.</p></div>
+      <div class="card" style="padding:1.2rem;"><h4>Journeys, Club, nights</h4><p>Collections as fortnightly journeys, Lum&egrave; Club, the Lum&egrave; night run sheet, and the photo protocol that makes before and afters happen.</p></div>
+      <div class="card" style="padding:1.2rem;"><h4>Angel's content system</h4><p>One Lum&egrave; project, the filter on, spotlights and client journeys, specials you both can see. Ten minutes of filming a week.</p></div>
+      <div class="card" style="padding:1.2rem;"><h4>The website &amp; the Monday screen</h4><p>Prices on the page, concern pages, Google owned in Bundaberg. One screen every Monday that tells you whether you are at 80%.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:2rem;"><a href="https://cliniccatalyst.com.au/checkout-page" target="_blank" style="display:inline-block; background:var(--teal-bright); color:var(--dark); padding:0.9rem 2rem; border-radius:6px; font-family:'Montserrat',sans-serif; font-size:0.8rem; font-weight:800; letter-spacing:0.08em; text-transform:uppercase; text-decoration:none;">$500 + GST deposit secures your seat &#8594;</a><p style="font-size:0.7rem; color:var(--text-faint); margin-top:0.6rem;">3-Day Brisbane Workshop, 26 to 28 October &middot; $3,500 + GST &middot; bring Angel for $300 &middot; website bonus $5,000 + GST</p></div>
+  </div>
+</section>
+
+</div>
+
+<div class="slide-counter" id="counter">1 / --</div>
+<div class="nav-hint">Arrow keys to navigate &middot; F for fullscreen</div>
+
+<script>
+const deck = document.getElementById('deck');
+const slides = document.querySelectorAll('.slide');
+const counter = document.getElementById('counter');
+const total = slides.length;
+counter.textContent = '1 / ' + total;
+function updateCounter() {
+  const current = Math.round(deck.scrollTop / window.innerHeight) + 1;
+  counter.textContent = current + ' / ' + total;
+}
+deck.addEventListener('scroll', updateCounter);
+document.addEventListener('keydown', function(e) {
+  const h = window.innerHeight;
+  if (e.key === 'ArrowDown' || e.key === 'ArrowRight' || e.key === ' ') { e.preventDefault(); deck.scrollBy({top:h, behavior:'smooth'}); }
+  if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') { e.preventDefault(); deck.scrollBy({top:-h, behavior:'smooth'}); }
+  if (e.key === 'Home') { e.preventDefault(); deck.scrollTo({top:0, behavior:'smooth'}); }
+  if (e.key === 'End') { e.preventDefault(); deck.scrollTo({top:deck.scrollHeight, behavior:'smooth'}); }
+  if (e.key === 'f' || e.key === 'F') {
+    if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+    else document.exitFullscreen();
+  }
+});
+var ua = navigator.userAgent || '';
+if (/FBAN|FBAV|Instagram|Line|Messenger/i.test(ua)) {
+  var banner = document.getElementById('inapp-banner');
+  var link = document.getElementById('inapp-link');
+  if (banner) { banner.style.display = 'block'; }
+  if (link) { link.href = window.location.href; }
+}
+</script>
+</body>
+</html>
