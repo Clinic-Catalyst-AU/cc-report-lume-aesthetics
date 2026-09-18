@@ -279,12 +279,20 @@
 
   /* simple call-outs */
   .tiers{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin:18px 0 0}
-  .tier{border:1px solid var(--line);background:#fff;padding:20px 20px 8px;border-radius:4px}
+  .tier{border:1px solid var(--line);background:#fff;padding:20px 20px 8px;border-radius:4px;display:flex;flex-direction:column}
+  .tier .pay{margin-top:auto}
   .tier.feat{border:2px solid var(--teal-mid);background:var(--paper-2)}
   .tname{margin:0;font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-mid)}
   .tfig{margin:4px 0 12px;font-family:var(--head);font-weight:800;font-size:34px;color:var(--ink);line-height:1}
   .tfig small{display:block;font-family:var(--body);font-weight:600;font-size:12.5px;letter-spacing:.04em;color:var(--mute);margin-top:6px}
   .inc.tight li{padding:0 0 12px 26px;grid-template-columns:minmax(0,1fr);font-size:15px}
+  .grp{margin:16px 0 8px;font-family:var(--head);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);border-bottom:1px solid var(--line);padding-bottom:6px}
+  .tsub{margin:0 0 14px;font-size:15px;color:var(--ink-2);font-weight:600}
+  .pay{border-top:1px solid var(--line);margin-top:6px;padding-top:14px}
+  .payh{margin:0 0 8px;font-family:var(--head);font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-mid)}
+  .payl{margin:0 0 6px;font-size:15.5px;color:var(--ink-2)}
+  .payl b{font-family:var(--head);font-weight:800;color:var(--ink)}
+  .paytot{margin:10px 0 14px;font-family:var(--head);font-weight:800;font-size:17px;color:var(--ink)}
   .sched{border-left:6px solid var(--teal-mid);background:var(--paper-2);padding:20px 22px;margin-top:22px}
   .schead{margin:0 0 12px;font-family:var(--head);font-weight:800;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-mid)}
   .sched ol{margin:0;padding-left:20px}
@@ -380,47 +388,76 @@
   </section>
 
   <section class="block" id="website">
-    <p class="band">Optional &middot; your website &middot; what is in each build</p>
-    <h2 class="lead">The concept you have seen, built out and launched in your name</h2>
-    <p class="intro">Two ways to do it. Both are built inside your own system on your own domain, and everything stays in your custody from day one. Both including GST.</p>
+    <p class="band">Optional &middot; your website &middot; pick one</p>
+    <h2 class="lead">Your website, two ways</h2>
+    <p class="intro">Both prices include GST. Both are built on your own domain, inside your own system, and are yours from the first day. Pick the one you want and we start this week.</p>
 
     <div class="tiers">
+
       <div class="tier">
-        <p class="tname">Standard</p>
+        <p class="tname">Option one &middot; Standard</p>
         <p class="tfig">$3,500<small>including GST</small></p>
+        <p class="tsub">The concept you have seen, live in your name.</p>
+        <p class="grp">The pages</p>
         <ul class="inc tight">
-          <li><span class="t">The home page exactly as the concept you have seen: specials, concerns, the consultation, collections, you and Angel, contact and map.</span></li>
-          <li><span class="t">Up to five further pages, written so Google and Claude can find you for what you actually treat.</span></li>
-          <li><span class="t">Booking buttons straight through to Timely, and an enquiry form that lands in your system, not a private inbox.</span></li>
-          <li><span class="t">Meta pixel and Google tag installed, so every ad you run can be measured.</span></li>
-          <li><span class="t">Checked on phone and desktop before it goes anywhere.</span></li>
+          <li><span class="t">Your home page, exactly as the concept you have seen: specials, concerns, the consultation, collections, you and Angel, contact and map.</span></li>
+          <li><span class="t">Five more pages, written so Google and Claude find you for what you actually treat.</span></li>
           <li><span class="t">Three rounds of changes.</span></li>
         </ul>
-      </div>
-      <div class="tier feat">
-        <p class="tname">Everything, all the bells and whistles</p>
-        <p class="tfig">$5,000<small>including GST</small></p>
+        <p class="grp">What it is plugged into</p>
         <ul class="inc tight">
-          <li><span class="t">Everything in standard, plus:</span></li>
-          <li><span class="t">The skin assessment: the questions answered on the phone, a plan on screen at the end, and the lead in your system ready to book.</span></li>
-          <li><span class="t">Landing pages for your campaigns, so an ad lands somewhere built to convert rather than on the home page.</span></li>
-          <li><span class="t">Up to ten further pages instead of five.</span></li>
-          <li><span class="t">Your results gallery behind a code, so it stays compliant.</span></li>
-          <li><span class="t">A 90 minute training session, recorded, so you can write and publish new pages yourself through Claude whenever you want one.</span></li>
+          <li><span class="t">One enquiry form. She fills it in, she is created as a contact in your system and your general enquiry follow-up starts on its own.</span></li>
+          <li><span class="t">Book buttons straight into Timely.</span></li>
+          <li><span class="t">Meta pixel and Google tag, so you can see which ad brought her.</span></li>
         </ul>
+        <div class="pay">
+          <p class="payh">You pay</p>
+          <p class="payl"><b>$1,500</b> today, we start this week</p>
+          <p class="payl"><b>$1,500</b> in October</p>
+          <p class="payl"><b>$500</b> when your training is booked</p>
+          <p class="paytot">Total $3,500</p>
+        </div>
       </div>
+
+      <div class="tier feat">
+        <p class="tname">Option two &middot; Everything</p>
+        <p class="tfig">$5,000<small>including GST</small></p>
+        <p class="tsub">All of option one, plus the pieces that bring people in.</p>
+        <p class="grp">The pages</p>
+        <ul class="inc tight">
+          <li><span class="t"><b>Everything in option one</b>, with ten more pages instead of five.</span></li>
+          <li><span class="t">Landing pages for your campaigns, so an ad lands somewhere built to convert instead of on the home page.</span></li>
+          <li><span class="t">Your results gallery behind a code, so it stays compliant.</span></li>
+        </ul>
+        <p class="grp">What it is plugged into</p>
+        <ul class="inc tight">
+          <li><span class="t"><b>The skin assessment.</b> She answers the questions on her phone, gets a plan on screen, and lands in your system already tagged with what she is worried about.</span></li>
+          <li><span class="t"><b>Follow-up that matches her concern.</b> Pigment, ageing, acne, and the sequence she gets is about that, not a generic hello.</span></li>
+          <li><span class="t"><b>Every campaign on its own thread.</b> Each landing page has its own form and its own follow-up, so you can see which campaign actually filled the diary.</span></li>
+          <li><span class="t"><b>The gallery captures her too</b>, so a quiet browser is not a lost one.</span></li>
+          <li><span class="t"><b>A recorded 90 minute session</b>, so you write and publish new pages yourself through Claude whenever you want one.</span></li>
+        </ul>
+        <div class="pay">
+          <p class="payh">You pay</p>
+          <p class="payl"><b>$1,500</b> today, we start this week</p>
+          <p class="payl"><b>$1,500</b> in October</p>
+          <p class="payl"><b>$1,500</b> when your training is booked</p>
+          <p class="payl"><b>$500</b> when it goes live on your domain</p>
+          <p class="paytot">Total $5,000</p>
+        </div>
+      </div>
+
     </div>
 
     <div class="sched">
-      <p class="schead">Broken up so you can start now</p>
+      <p class="schead">How it runs</p>
       <ol>
-        <li><b>$1,500 to start.</b> We begin the build straight away, you do not wait for the workshop.</li>
-        <li><b>$1,500 in October.</b> Build continues.</li>
-        <li><b>The week after the workshop</b> it is delivered for your final approval, handed into your custody, and your training is booked.</li>
-        <li><b>$1,500 when your training is booked</b> (standard build: $500, as that is the balance).</li>
-        <li><b>The balance when it is live on your own domain.</b> $500 on the full build, nothing left owing on standard.</li>
+        <li>You pay the first $1,500 and we start building this week. You are not waiting for October.</li>
+        <li>The week after the workshop it is finished and shown to you for final approval.</li>
+        <li>It is handed into your custody and your training gets booked.</li>
+        <li>It goes live on your domain.</li>
       </ol>
-      <p class="schead2">Your domain, your system, your accounts, your logins, from the first day to the last. Nothing sits with us.</p>
+      <p class="schead2">Your domain. Your system. Your logins. From the first day to the last. Nothing sits with us and there is nothing to cancel if you ever walk away.</p>
     </div>
   </section>
 
